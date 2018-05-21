@@ -18,11 +18,17 @@ client.on('ready', function() {
 
 
 
-
-
-
-
-
+client.on('message', message => {
+     if (message.content === "-bot") {
+     let embed = new Discord.RichEmbed()
+  .setColor("RANDOM")
+  .addField("Servers:" , client.guilds.size)
+  .addField("Users:", client.users.size)
+  .addField("channels:", client.channels.size)
+  .setTimestamp()
+message.channel.sendEmbed(embed);
+    }
+});
 
 
 
