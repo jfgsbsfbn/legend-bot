@@ -29,9 +29,6 @@ client.on('message', message => {
 message.channel.sendEmbed(embed);
     }
 });
-
-
-
 /*
 ////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\
 ////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -342,6 +339,7 @@ client.on("message", message => {
       -bc
      لارسال برودكاست لاعضاء السيرفر
      
+      اذا كنت تبي يقلك البوت من دخل و طلع السيرفر سوي روم مسكر اسمه console
      
 ══════════ஜ۩۞۩ஜ════════════ 
 الاضافة البوت: https://discordapp.com/api/oauth2/authorize?client_id=447382628673388544&permissions=8&scope=bot
@@ -371,6 +369,42 @@ m.sendMessage(args)
 }
 });
  
+client.on('guildMemberAdd', member => {
+    if (!member || !member.id || !member.guild) return;
+    const guild = member.guild;
+
+    const channel = member.guild.channels.find('name', 'console');
+    if (!channel) return;
+    let memberavatar = member.user.avatarURL
+    const fromNow = moment(member.user.createdTimestamp).fromNow();
+    const isNew = (new Date() - member.user.createdTimestamp) < 900000 ? '🆕' : '';
+
+    let embed = new Discord.RichEmbed()
+       .setAuthor(`${member.user.tag}`, member.user.avatarURL)
+       .setThumbnail(memberavatar)
+       .setColor('GREEN')
+       .setDescription(`📥 <@${member.user.id}> **دخل السيرفر**\n\n`)
+       .setTimestamp();
+     channel.send({embed:embed});
+});
+// لوق خروج اللاعبين
+client.on('guildMemberRemove', member => {
+    if (!member || !member.id || !member.guild) return;
+    const guild = member.guild;
+
+    const channel = member.guild.channels.find('name', 'console');
+    if (!channel) return;
+    let memberavatar = member.user.avatarURL
+    const fromNow = moment(member.joinedTimestamp).fromNow();
+
+    let embed = new Discord.RichEmbed()
+       .setAuthor(`${member.user.tag}`, member.user.avatarURL)
+       .setThumbnail(memberavatar)
+       .setColor('RED')
+       .setDescription(`📤 <@${member.user.id}> **خرج من السيرفر**\n\n`)
+       .setTimestamp();
+     channel.send({embed:embed});
+});
 
 
 client.login(process.env.BOT_TOKEN);
