@@ -46,6 +46,23 @@ client.on('message', message => {
 message.channel.sendEmbed(embed);
     }
 });
+nfo = new Discord.RichEmbed()
+                    .setAuthor(client.user.username, client.user.avatarURL)
+                    .setDescription(`**${videoInfo.title}**`)
+                    .setColor("RANDOM")
+                    .setFooter('Requested By:' + message.author.tag)
+                    .setImage(videoInfo.thumbnailUrl)
+                message.channel.sendEmbed(playing_now_info);
+                queueNames.push(videoInfo.title);
+                // let now_playing = videoInfo.title;
+                now_playing.push(videoInfo.title);
+ 
+            });
+ 
+        });
+    }
+ 
+   
 /*
 ////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\
 ////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -263,6 +280,7 @@ client.on('message', function(message) {
         return str.toLowerCase().indexOf('youtube.com') > -1;
     }
 });
+
 
 
 client.on('message', message => {
