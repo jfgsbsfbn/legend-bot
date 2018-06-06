@@ -21,7 +21,7 @@ client.on('ready', function() {
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-client.user.setGame(`KingMas`,"http://twitch.tv/S-F")
+client.user.setGame(`-help`)
   console.log('')
   console.log('')
   console.log('╔[═════════════════════════════════════════════════════════════════]╗')
