@@ -7,7 +7,7 @@ const getYoutubeID = require('get-youtube-id');
 const fetchVideoInfo = require('youtube-info');
  
 const yt_api_key = "AIzaSyDeoIH0u1e72AtfpwSKKOSy3IPp2UHzqi4";
-const prefix = '-';
+const prefix = '!';
 const discord_token = process.env.BOT_TOKEN;
 client.login(discord_token);
 client.on('ready', function() {
@@ -17,7 +17,7 @@ client.on('ready', function() {
 
 client.on("message", async message => {
     const args = message.content.split(' ').slice(1).join(' ');
-     if (message.content.startsWith(prefix + "مسح")) {
+     if (message.content.startsWith("مسح")) {
     let args = message.content.split(" ").slice(1)
     let messagecount = parseInt(args);
     if (args > 100) return message.reply("اعلى حد للمسح هو 100").then(messages => messages.delete(5000))
@@ -50,7 +50,7 @@ client.on('guildMemberAdd', member => {
     });
 
 client.on("message", message => {
- if (message.content === "-help") {
+ if (message.content === "!help") {
   const embed = new Discord.RichEmbed()
       .setColor("#ffff00")
         .setDescription(`**السيرفرات**🌐 **__${client.guilds.size}__**
@@ -94,7 +94,7 @@ client.on("ready",()=> {
 
 client.on("message",(message) => {
 
-    if(message.content.startsWith("-invs")){
+    if(message.content.startsWith("!invs")){
 
         var invites = async function(){
             await client.guilds.forEach(g => {
@@ -353,7 +353,7 @@ client.on('message', message => {
 
     let args = message.content.split(' ').slice(1).join(' ');
      if(!message.channel.guild) return;
-if(message.content.split(' ')[0] == '-bc') {
+if(message.content.split(' ')[0] == '!bc') {
          message.react("✔️")
           let embed = new Discord.RichEmbed()
     .setColor("#FF00FF")
@@ -377,7 +377,7 @@ if(message.content.split(' ')[0] == '-bc') {
   client.on('ready', function(){
         client.user.setStatus("dnd");
         var ms = 100000 ;
-        var setGame = [`-play/-help `];
+        var setGame = [`!play/!help `];
         var i = -1;
         var j = 0;
         setInterval(function (){
@@ -421,7 +421,7 @@ m.sendMessage(args)
 
 
 client.on("message", message => {
- if (message.content === "-help") {
+ if (message.content === "!help") {
         message.react("✅")
            message.react("📬")
   const embed = new Discord.RichEmbed() 
@@ -437,31 +437,31 @@ client.on("message", message => {
     
       لترحيب chat يتوفر ترحيب لازم يكون في روم اسمها 
      
-     -play
+     !play
      امر تشغيل الأغنية , !شغل الرابط او اسم الأعنية
      
-     -skip
+     !skip
      تغير الأغنية
     
-     -join
+     !join
      عشان يدخل البوت الروم
      
-     -stop
+     !stop
      ايقاف الأغنية
      
-     -pause
+     !pause
      ايقاف الاغنيه موقتا
      
-     -unpause
+     !unpause
      مواصلة الأغنية
      
-     -vol
+     !vol
      مستوى الصوت 100
      
-      -bc
+      !bc
      لارسال برودكاست لاعضاء السيرفر
      
-     !... ＤＬ(Dream Of Legends)  جميع الحقوق محفوضه لدا سيرفر
+        جميع الحقوق محفوضه 
 @Legend_YT#4187 صاحب البوت/  @Legend_YT#4187 معدل البوت
 ══════════ஜ۩۞۩ஜ════════════ 
 الاضافة البوت: https://discordapp.com/api/oauth2/authorize?client_id=447382628673388544&permissions=8&scope=bot
