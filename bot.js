@@ -254,6 +254,13 @@ let embed = new Discord.RichEmbed()
   channel.sendEmbed(embed);
 });
 
+client.on('message', message => {
+if(!message.channel.guild) return;
+if (message.content.startsWith("!ping")) {
+    message.channel.sendMessage(`Pong ! \`${Date.now() - message.createdTimestamp} ms\`:watch:`);
+    }
+});
+
 /*
 ////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\
 ////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\
