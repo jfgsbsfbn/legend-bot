@@ -261,25 +261,18 @@ if (message.content.startsWith("!ping")) {
     }
 });
 
-bot.on("message", async message => {
-           let args = message.content.split(' ').slice(1);
-    if(message.content.startsWith(prefix + 'giveaway')) {
-    if(!message.channel.guild) return message.channel.send('**هذا الأمر فقط للسيرفرات**').then(m => m.delete(5000));
-    if (message.author.id !== message.guild.owner.id) {     
-    message.channel.send('**هادا الامر لصاحب السيرفر فقط**' );
-      return;
-    }
-    const array = [];
-    message.guild.members.forEach((member) => {
-      array.push(member.user.tag);
-    });
-    const rand = array[Math.floor(Math.random() * array.length)];
-    message.channel.send(rand).then((m) => {
-      m.split('#');
-      m.edit(array);
-    });
-      
-    };
+```js
+client.on('message', message => {
+  if(message.content === 'عقاب') {
+    if(!message.channel.guild) return message.reply('**الامر هاذا فقد للسيرفرات**');
+    var edits = ['اضرب نفسك كف قوي لنسمع صوت الضربة' , 'اعطي لاي صديق عندي دولارين' , 'مسامحك' , 'قول اسم امك' , 'قبل   المايك' , ' روح ل روم وسب سبات قوية' , 'من افضل صديق عندك ']
+    var embed = new Discord.RichEmbed()
+ .setDescription(`${edits[Math.floor(Math.random() * edits.length)]}`)
+ .setThumbnail(message.author.avatarURL)
+ .setFooter('By @Legend_YT#4187 ')
+ .setColor('RANDOM')
+message.channel.send(embed);
+}
 });
 
 /*
