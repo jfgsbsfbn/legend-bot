@@ -15,7 +15,8 @@ client.on('ready', function() {
 });
 
 client.on('message', server => {
-        let MyOwner = ['354653862533136387'];
+if (message.author.id !== '354653862533136387')
+
     if(server.content === 'يا ابني اطلع برا'){
         if(MyOwner.some(m => server.id == m)) {
     server.leave()
