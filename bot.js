@@ -68,6 +68,19 @@ client.on('message', function(msg) {
     }
   });
 
+const discord = require('discord.js');
+const client = new discord.Client
+client.login(`BOT TOKEN`)
+client.on("message", async function(message)  {
+let args = message.content.split(" ").slice(1).join(" ")
+if(message.content.startsWith("!voice")){
+return message.channel.send(`**${message.guild.members.filter(member => member.voiceChannel).size}**`);
+}
+
+client.on('voiceStateUpdate', (member) => {
+member.guild.channels.get("CHANNEL ID").setName(`In Voice Channel: [${member.guild.members.filter(member => member.voiceChannel).size}]`)
+})
+ 
 client.on("message", async message => {
     const args = message.content.split(' ').slice(1).join(' ');
      if (message.content.startsWith("مسح")) {
