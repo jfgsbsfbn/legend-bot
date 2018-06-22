@@ -69,6 +69,31 @@ client.on('message', function(msg) {
   });
 
 client.on('message', message => {
+
+
+if (message.content === prefix + "تقفيل الشات") {
+if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('**You don’t have `Manage Messages` permissions**');
+           message.channel.overwritePermissions(message.guild.id, {
+         SEND_MESSAGES: false
+
+           }).then(() => {
+               message.reply("Channel Muted ✅ ")
+           });
+}
+  if (message.content === prefix + "فتح الشات") {
+if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('**You don’t have `Manage Messages` permissions**');
+           message.channel.overwritePermissions(message.guild.id, {
+         SEND_MESSAGES: true
+
+           }).then(() => {
+               message.reply("Channel UnMuted ✅ ")
+           });
+}
+  
+
+});
+
+client.on('message', message => {
     if(message.content === 'كيفكم'){
         message.channel.send('بخير دامك بخير')
     }
