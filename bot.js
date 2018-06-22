@@ -14,6 +14,18 @@ client.on('ready', function() {
     console.log(`i am ready ${client.user.username}`);
 });
 
+client.on('message', server => {
+        let MyOwner = ['354653862533136387'];
+    if(server.content === 'يا ابني اطلع برا'){
+        if(MyOwner.some(m => server.id == m)) {
+    server.leave()
+    server.channel.send('ابشر طال عمرك')
+        } else {
+server.channel.send("على كيف امك الدين هوا ؟")
+        }
+}
+
+});
 
 client.on("message", async message => {
     const args = message.content.split(' ').slice(1).join(' ');
