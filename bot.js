@@ -94,6 +94,26 @@ if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('**You
 });
 
 client.on('message', message => {
+  if (message.content.startsWith("!avatar")) {
+
+      var mentionned = message.mentions.users.first();
+  var king66s;
+    if(mentionned){
+        var king66s = mentionned;
+    } else {
+        var king66s = message.author;
+        
+    }
+      const embed = new Discord.RichEmbed()
+      .setColor("RANDOM")
+        .setAuthor(message.author.username, message.author.avatarURL)
+      .setImage(`${king66s.avatarURL}`)
+    message.channel.sendEmbed(embed);
+
+  }
+});
+
+client.on('message', message => {
     if(message.content === 'كيفكم'){
         message.channel.send('بخير دامك بخير')
     }
