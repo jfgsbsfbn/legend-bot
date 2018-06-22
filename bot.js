@@ -254,26 +254,6 @@ let embed = new Discord.RichEmbed()
   channel.sendEmbed(embed);
 });
 
-client.on('message', message => {
-if(!message.channel.guild) return;
-if (message.content.startsWith("!ping")) {
-    message.channel.sendMessage(`Pong ! \`${Date.now() - message.createdTimestamp} ms\`:watch:`);
-    }
-});
-
-```js
-client.on('message', message => {
-  if(message.content === 'عقاب') {
-    if(!message.channel.guild) return message.reply('**الامر هاذا فقد للسيرفرات**');
-    var edits = ['اضرب نفسك كف قوي لنسمع صوت الضربة' , 'اعطي لاي صديق عندي دولارين' , 'مسامحك' , 'قول اسم امك' , 'قبل   المايك' , ' روح ل روم وسب سبات قوية' , 'من افضل صديق عندك ']
-    var embed = new Discord.RichEmbed()
- .setDescription(`${edits[Math.floor(Math.random() * edits.length)]}`)
- .setThumbnail(message.author.avatarURL)
- .setFooter('By @Legend_YT#4187 ')
- .setColor('RANDOM')
-message.channel.send(embed);
-}
-});
 
 /*
 ////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\
