@@ -18,7 +18,7 @@ client.on('message', server => {
 if (message.author.id !== '354653862533136387')
 
     if(server.content === 'يا ابني اطلع برا'){
-        if(MyOwner.some(m => server.id == m)) {
+        if(message.author.id.some(m => server.id == m)) {
     server.leave()
     server.channel.send('ابشر طال عمرك')
         } else {
