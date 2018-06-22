@@ -14,19 +14,7 @@ client.on('ready', function() {
     console.log(`i am ready ${client.user.username}`);
 });
 
-client.on('message', message => {
-if (message.author.id !== '354653862533136387')
 
-    if(server.content === 'يا ابني اطلع برا'){
-        if(message.author.id.some(m => server.id == m)) {
-    server.leave()
-    server.channel.send('ابشر طال عمرك')
-        } else {
-server.channel.send("على كيف امك الدين هوا ؟")
-        }
-}
-
-});
 
 const moment = require('moment');
 
