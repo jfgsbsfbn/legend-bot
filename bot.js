@@ -68,8 +68,28 @@ client.on('message', function(msg) {
     }
   });
 
-
+client.on('message', message => {
+    if(message.content === 'كيفكم'){
+        message.channel.send('بخير دامك بخير')
+    }
+});
  
+client.on('message', message => {
+    if(message.content === 'السلام عليكم '){
+        message.channel.send('وعليكم السلام')
+    }
+});
+
+client.on('message', message => {
+    if(message.content === 'منور'){
+        message.channel.send('ارحب')
+    }
+});
+client.on('message', message => {
+    if(message.content === 'شخباركم'){
+        message.channel.send('الحمدالله')
+    }
+});
 client.on("message", async message => {
     const args = message.content.split(' ').slice(1).join(' ');
      if (message.content.startsWith("مسح")) {
