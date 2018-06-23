@@ -44,30 +44,6 @@ client.on("ready", () => {
 
 
 
-client.on("guildMemberAdd", (member) => {
-    let channel = member.guild.channels.get("460065801643360257");// ايدي الروم
-    if (!channel) {
-        console.log("!channel fails");
-        return;
-    }
-    if (member.id == client.user.id) {
-        return;
-    }
-    console.log('made it till here!');
-    var guild;
-    while (!guild)
-        guild = client.guilds.get("399187519150882816")// ايدي السيرفر
-    guild.fetchInvites().then((data) => {
-        data.forEach((Invite, key, map) => {
-            var Inv = Invite.code;
-            if (dat[Inv])
-                if (dat[Inv] < Invite.uses) {
- channel.send(تم دعوته من قبل  ${Invite.inviter})
- }
-            dat[Inv] = Invite.uses;
-        })
-    })
-})
 
 
  client.on('message', message => {
@@ -154,7 +130,7 @@ client.on('message', message=>{
 const moment = require('moment');
 
 client.on("guildMemberAdd", member => {
-let welcomer = member.guild.channels.find("name","chat");
+let welcomer = member.guild.channels.find("name","دخول");
       if(!welcomer) return;
       if(welcomer) {
          moment.locale('ar-ly');
@@ -510,7 +486,7 @@ client.on("message", async message => {
   });
 
 client.on('guildMemberAdd', member => {
-    let channel = member.guild.channels.find('name', 'chat');
+    let channel = member.guild.channels.find('name', 'دخول');
     let memberavatar = member.user.avatarURL
       if (!channel) return;
     let embed = new Discord.RichEmbed()
