@@ -164,30 +164,20 @@ client.on("channelCreate",  cc => {
 
  
 
-client.on('message' , async (message) => {
+client.on('message', message => {
+  if (message.author.bot) return;
+  if (!message.content.startsWith(prefix)) return;
 
-    if(message.content.startsWith("دعواتي")) {
-           if(!message.channel.guild) return
+  let command = message.content.split(" ")[0];
+  command = command.slice(prefix.length);
 
-  var invites = await message.guild.fetchInvites();
+  let args = message.content.split(" ").slice(1);
 
-    invites = invites.array();
-
-    arraySort(invites, 'uses', { reverse: true });
-
-    let possibleInvites = [['User Invited', 'Uses']];
-    invites.forEach(i => {
-      possibleInvites.push([i.inviter.username , i.uses]); 
-    })
-    const embed = new Discord.RichEmbed()
-    .setColor('RANDOM')
-    .setTitle("Server Invites")
-    .addField('Top Invites:' , `\`\`\`${table.table(possibleInvites)}\`\`\``)
-    .setThumbnail(message.author.avatarURL)
-
-    message.channel.send(embed)
-    }
-});
+  if (command == "!say") {
+   message.channel.sendMessage(args.join("  "))
+   message.delete()
+  }
+ });
 
 client.on('guildMemberAdd', member => {
     if (!member || !member.id || !member.guild) return;
@@ -264,7 +254,7 @@ client.on('message', function(msg) {
 client.on('message', message => {
 
 
-if (message.content === prefix + "تقفيل الشات") {
+if (message.content === prefix + "قفل الشات") {
 if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('**You don’t have `Manage Messages` permissions**');
            message.channel.overwritePermissions(message.guild.id, {
          SEND_MESSAGES: false
@@ -376,6 +366,12 @@ client.on('message', message => {
     }
 });
  
+  client.on('message', message => {
+    if(message.content === 'كيفك'){
+        message.channel.send('بخير دامك بخير')
+    }
+});
+
 client.on('message', message => {
     if(message.content === 'السلام عليكم '){
         message.channel.send('وعليكم السلام')
