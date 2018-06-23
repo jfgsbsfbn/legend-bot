@@ -527,59 +527,6 @@ m.sendMessage(args)
 });
 
 
-client.on("message", message => {
- if (message.content === "!help") {
-        message.react("✅")
-           message.react("📬")
-  const embed = new Discord.RichEmbed() 
-      .setColor("#ffff00")
-      .setDescription(`
-╭━━╮╭╮╱╱╱╱╱╱╭╮╱╭━━╮╱╱╱╭╮
-┃╭╮┃┃┃╱╱╱╱╱╱┃┃╱┃╭╮┃╱╱╭╯╰╮
-┃╰╯╰┫┃╭━━┳━━┫┃╭┫╰╯╰┳━┻╮╭╯
-┃╭━╮┃┃┃╭╮┃╭━┫╰╯┫╭━╮┃╭╮┃┃
-┃╰━╯┃╰┫╭╮┃╰━┫╭╮┫╰━╯┃╰╯┃╰╮
-╰━━━┻━┻╯╰┻━━┻╯╰┻━━━┻━━┻━╯
-     🎵「أوامر بوت بلاك」🎵
-    
-      لترحيب chat يتوفر ترحيب لازم يكون في روم اسمها 
-     
-     !play
-     امر تشغيل الأغنية , !شغل الرابط او اسم الأعنية
-     
-     !skip
-     تغير الأغنية
-    
-     !join
-     عشان يدخل البوت الروم
-     
-     !stop
-     ايقاف الأغنية
-     
-     !pause
-     ايقاف الاغنيه موقتا
-     
-     !unpause
-     مواصلة الأغنية
-     
-     !vol
-     مستوى الصوت 100
-     
-      !bc
-     لارسال برودكاست لاعضاء السيرفر
-     
-        جميع الحقوق محفوضه 
-@Legend_YT#4187 صاحب البوت/  @Legend_YT#4187 معدل البوت
-══════════ஜ۩۞۩ஜ════════════ 
-الاضافة البوت: https://discordapp.com/api/oauth2/authorize?client_id=447382628673388544&permissions=8&scope=bot
-رابط سيرفر السبورت:https://discord.gg/MTpT3Dt 
-══════════ஜ۩۞۩ஜ════════════ 
- `)
-
-   message.author.sendEmbed(embed)
-   
-   }
-   }); 
 
 /*
 ////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -840,6 +787,58 @@ if(message.content.split(' ')[0] == '!bc') {
 })
 
 
+ if (message.author.omar) return;
+      if (!message.content.startsWith(prefix)) return;
+      var command = message.content.split(" ")[0];
+      command = command.slice(prefix.length);
+      var args = message.content.split(" ").slice(1);
+      if (command == "kick") {
+       if(!message.channel.guild) return message.reply('** This command only for servers**');
+      if(!message.guild.member(message.author).hasPermission("KICK_MEMBERS")) return message.reply("**You Don't Have ` KICK_MEMBERS ` Permission**");
+      if(!message.guild.member(client.user).hasPermission("KICK_MEMBERS")) return message.reply("**I Don't Have ` KICK_MEMBERS ` Permission**");
+      var user = message.mentions.users.first();
+      var reason = message.content.split(" ").slice(2).join(" ");
+      if (message.mentions.users.size < 1) return message.reply("**منشن شخص**");
+      if(!reason) return message.reply ("**اكتب سبب الطرد**");
+      if (!message.guild.member(user).kickable) return message.reply("**لايمكنني طرد شخص اعلى من رتبتي يرجه اعطاء البوت رتبه عالي**");
+      const kickembed = new Discord.RichEmbed()
+      .setAuthor(`KICKED!`, user.displayAvatarURL)
+      .setColor("RANDOM")
+      .addField("**User:**",  '**[ ' + `${user.tag}` + ' ]**')
+      .addField("**By:**", '**[ ' + `${message.author.tag}` + ' ]**')
+      .addField("**Reason:**", '**[ ' + `${reason}` + ' ]**')
+      message.channel.send({embed : kickembed})
+      user.send(reason).then(()=>{
+    message.guild.member(user).kick();
+      })
+    }
+    });
+client.on('message', message => {
+  if (message.author.omar) return;
+  if (!message.content.startsWith(prefix)) return;
+  var command = message.content.split(" ")[0];
+  command = command.slice(prefix.length);
+  var args = message.content.split(" ").slice(1);
+  if (command == "ban") {
+   if(!message.channel.guild) return message.reply('** This command only for servers**');
+  if(!message.guild.member(message.author).hasPermission("BAN_MEMBERS")) return message.reply("**لايوجد لديك ` BAN_MEMBERS ` صلاحية**");
+if(!message.guild.member(client.user).hasPermission("BAN_MEMBERS")) return message.reply("**ليس لدي صلاحيات لتبنيد العضو **");
+var user = message.mentions.users.first();
+  var reason = message.content.split(" ").slice(2).join(" ");
+  if (message.mentions.users.size < 1) return message.reply("**منشن شخص**");
+  if(!reason) return message.reply ("**اكتب سبب الطرد**");
+  if (!message.guild.member(user).banable) return message.reply("**لايمكنني طرد شخص اعلى من رتبتي يرجه اعطاء البوت رتبه عالي**");
+  const banembed = new Discord.RichEmbed()
+  .setAuthor(`BAN!`, user.displayAvatarURL)
+  .setColor("RANDOM")
+  .addField("**User:**",  '**[ ' + `${user.tag}` + ' ]**')
+  .addField("**By:**", '**[ ' + `${message.author.tag}` + ' ]**')
+  .addField("**Reason:**", '**[ ' + `${reason}` + ' ]**')
+  user.send(reason).then(()=>{
+message.guild.member(user).kick();
+  })
+}
+});
 
 
   client.on('ready', function(){
@@ -895,13 +894,14 @@ client.on("message", message => {
   const embed = new Discord.RichEmbed() 
       .setColor("#ffff00")
       .setDescription(`
-╭━━╮╭╮╱╱╱╱╱╱╭╮╱╭━━╮╱╱╱╭╮
-┃╭╮┃┃┃╱╱╱╱╱╱┃┃╱┃╭╮┃╱╱╭╯╰╮
-┃╰╯╰┫┃╭━━┳━━┫┃╭┫╰╯╰┳━┻╮╭╯
-┃╭━╮┃┃┃╭╮┃╭━┫╰╯┫╭━╮┃╭╮┃┃
-┃╰━╯┃╰┫╭╮┃╰━┫╭╮┫╰━╯┃╰╯┃╰╮
-╰━━━┻━┻╯╰┻━━┻╯╰┻━━━┻━━┻━╯
-     🎵「أوامر بوت بلاك」🎵
+╔═══╦╗─╔╦═══╦═══╦═══╗─╔══╗╔═══╦════╗
+║╔═╗║║─║║╔═╗║╔══╣╔═╗║─║╔╗║║╔═╗║╔╗╔╗║
+║╚══╣║─║║╚═╝║╚══╣╚═╝║─║╚╝╚╣║─║╠╝║║╚╝
+╚══╗║║─║║╔══╣╔══╣╔╗╔╩═╣╔═╗║║─║║─║║
+║╚═╝║╚═╝║║──║╚══╣║║╚╦═╣╚═╝║╚═╝║─║║
+╚═══╩═══╩╝──╚═══╩╝╚═╝─╚═══╩═══╝─╚╝
+
+     🎵「أوامر لاغاني」🎵
     
       لترحيب chat يتوفر ترحيب لازم يكون في روم اسمها 
      
@@ -926,6 +926,8 @@ client.on("message", message => {
      !vol
      مستوى الصوت 100
      
+        ***__:radioactive: أوامر الأداره__***
+
       !bc
      لارسال برودكاست لاعضاء السيرفر
      
