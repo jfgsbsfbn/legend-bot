@@ -63,7 +63,6 @@ let welcomer = member.guild.channels.find("name","chat");
       }
       });
 
-var prefix = '!';
       client.on('message',function(message) {
   if (message.author.bot) return;
 
