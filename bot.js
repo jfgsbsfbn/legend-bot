@@ -166,7 +166,7 @@ client.on("channelCreate",  cc => {
 
 client.on('message' , async (message) => {
 
-    if(message.content.startsWith(x5bz + "دعواتي")) {
+    if(message.content.startsWith("دعواتي")) {
            if(!message.channel.guild) return
 
   var invites = await message.guild.fetchInvites();
