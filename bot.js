@@ -26,17 +26,49 @@ client.on('message', function(message) {
     }
 });
 
- client.on('message', message => {
- if (message.content.startsWith('مريم')) {
-  var mariam= new Discord.RichEmbed()
-  .setTitle("لعبة مريم ..")
-  .setColor('RANDOM')
-  .setDescription(`${zead[Math.floor(Math.random() * zead.length)]}`)
-  .setImage("https://www.npa-ar.com/wp-content/uploads/2017/08/%D9%84%D8%B9%D8%A8%D8%A9-%D9%85%D8%B1%D9%8A%D9%85-300x200.jpg")
-   message.channel.sendEmbed(mariam);
-   message.react("??")
-  }
-});
+var dat = JSON.parse("{}");
+function forEachObject(obj, func) {
+    Object.keys(obj).forEach(function (key) { func(key, obj[key]) })
+}
+client.on("ready", () => {
+    var guild;
+    while (!guild)
+        guild = client.guilds.get("")// ايدي السيرفر
+    guild.fetchInvites().then((data) => {
+        data.forEach((Invite, key, map) => {
+            var Inv = Invite.code;
+            dat[Inv] = Invite.uses;
+        })
+    })
+})
+
+
+
+client.on("guildMemberAdd", (member) => {
+    let channel = member.guild.channels.get("");// ايدي الروم
+    if (!channel) {
+        console.log("!channel fails");
+        return;
+    }
+    if (member.id == client.user.id) {
+        return;
+    }
+    console.log('made it till here!');
+    var guild;
+    while (!guild)
+        guild = client.guilds.get("")// ايدي السيرفر
+    guild.fetchInvites().then((data) => {
+        data.forEach((Invite, key, map) => {
+            var Inv = Invite.code;
+            if (dat[Inv])
+                if (dat[Inv] < Invite.uses) {
+ channel.send(`تم دعوته من قبل  ${Invite.inviter}`)            
+ }
+            dat[Inv] = Invite.uses;
+        })
+    })
+})
+
 
   const dot = new Discord.Client();
 client.on('message', message => {
