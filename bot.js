@@ -26,6 +26,60 @@ client.on('message', function(message) {
     }
 });
 
+  const dot = new Discord.Client();
+client.on('message', message => {
+    
+    if (message.content === "emoji") {
+        setInterval(function(){
+        message.edit('😂') 
+        message.edit('🙉')   
+        message.edit('🔥')
+        message.edit('😠')
+        message.edit('🔥 🌶')
+        message.edit('🙃')
+        message.edit('☠')
+        message.edit('✨')
+        message.edit('😐')
+        message.edit('😍')
+        message.edit('❤')
+        message.edit('👌:skin-tone-2:')
+        message.edit('🌚')
+        message.edit('🌹')
+        message.edit('😒')
+        message.edit('🐸')
+        message.edit('🍉')
+        message.edit('🚨')
+        message.edit('😱')
+        message.edit('😡')        
+        message.edit('🤑')
+        message.edit('😖')
+        message.edit('😚')
+        message.edit('🕊')
+        message.edit('☄')
+           message.edit('🐶')
+        message.edit('🚜')    
+        message.edit('🍫')
+        message.edit('👇:skin-tone-2:')
+        message.edit('🕹')
+        message.edit('🌌 ')
+        message.edit('💋 ')
+           message.edit('🤸')
+        message.edit('🙍:skin-tone-2:')    
+        message.edit('😦')
+        message.edit('👈:skin-tone-2:')
+        message.edit('💓')
+        message.edit('☺')
+        message.edit('💗')
+        message.edit('🌸')
+
+
+        
+        
+        }, 1000)
+    }
+    
+})
+
 client.on('message', message=>{
     if (message.content ===  '!setcolors 200'){
               if(!message.channel.guild) return;
