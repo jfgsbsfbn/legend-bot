@@ -164,7 +164,6 @@ client.on("channelCreate",  cc => {
 
  
 
-var prefix = "!";
 client.on('message', message => {
   if (message.author.bot) return;
   if (!message.content.startsWith(prefix)) return;
