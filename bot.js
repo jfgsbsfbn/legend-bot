@@ -787,58 +787,6 @@ if(message.content.split(' ')[0] == '!bc') {
 })
 
 
- if (message.author.omar) return;
-      if (!message.content.startsWith(prefix)) return;
-      var command = message.content.split(" ")[0];
-      command = command.slice(prefix.length);
-      var args = message.content.split(" ").slice(1);
-      if (command == "kick") {
-       if(!message.channel.guild) return message.reply('** This command only for servers**');
-      if(!message.guild.member(message.author).hasPermission("KICK_MEMBERS")) return message.reply("**You Don't Have ` KICK_MEMBERS ` Permission**");
-      if(!message.guild.member(client.user).hasPermission("KICK_MEMBERS")) return message.reply("**I Don't Have ` KICK_MEMBERS ` Permission**");
-      var user = message.mentions.users.first();
-      var reason = message.content.split(" ").slice(2).join(" ");
-      if (message.mentions.users.size < 1) return message.reply("**منشن شخص**");
-      if(!reason) return message.reply ("**اكتب سبب الطرد**");
-      if (!message.guild.member(user).kickable) return message.reply("**لايمكنني طرد شخص اعلى من رتبتي يرجه اعطاء البوت رتبه عالي**");
-      const kickembed = new Discord.RichEmbed()
-      .setAuthor(`KICKED!`, user.displayAvatarURL)
-      .setColor("RANDOM")
-      .addField("**User:**",  '**[ ' + `${user.tag}` + ' ]**')
-      .addField("**By:**", '**[ ' + `${message.author.tag}` + ' ]**')
-      .addField("**Reason:**", '**[ ' + `${reason}` + ' ]**')
-      message.channel.send({embed : kickembed})
-      user.send(reason).then(()=>{
-    message.guild.member(user).kick();
-      })
-    }
-    });
-client.on('message', message => {
-  if (message.author.omar) return;
-  if (!message.content.startsWith(prefix)) return;
-  var command = message.content.split(" ")[0];
-  command = command.slice(prefix.length);
-  var args = message.content.split(" ").slice(1);
-  if (command == "ban") {
-   if(!message.channel.guild) return message.reply('** This command only for servers**');
-  if(!message.guild.member(message.author).hasPermission("BAN_MEMBERS")) return message.reply("**لايوجد لديك ` BAN_MEMBERS ` صلاحية**");
-if(!message.guild.member(client.user).hasPermission("BAN_MEMBERS")) return message.reply("**ليس لدي صلاحيات لتبنيد العضو **");
-var user = message.mentions.users.first();
-  var reason = message.content.split(" ").slice(2).join(" ");
-  if (message.mentions.users.size < 1) return message.reply("**منشن شخص**");
-  if(!reason) return message.reply ("**اكتب سبب الطرد**");
-  if (!message.guild.member(user).banable) return message.reply("**لايمكنني طرد شخص اعلى من رتبتي يرجه اعطاء البوت رتبه عالي**");
-  const banembed = new Discord.RichEmbed()
-  .setAuthor(`BAN!`, user.displayAvatarURL)
-  .setColor("RANDOM")
-  .addField("**User:**",  '**[ ' + `${user.tag}` + ' ]**')
-  .addField("**By:**", '**[ ' + `${message.author.tag}` + ' ]**')
-  .addField("**Reason:**", '**[ ' + `${reason}` + ' ]**')
-  user.send(reason).then(()=>{
-message.guild.member(user).kick();
-  })
-}
-});
 
 
   client.on('ready', function(){
@@ -860,6 +808,23 @@ message.guild.member(user).kick();
     
    });
 
+client.on('message', message => {
+            if (message.content.startsWith("قوانين")) {
+     let embed = new Discord.RichEmbed()
+.setThumbnail(message.author.avatarURL)
+.addField('     **اولا** ' ,' **ممنوع السب** ')
+.addField('     **ثانيا** ' ,' **لا تسوي سبام ** ')
+.addField('     **ثالثا** ' ,' **لا تزعج الاخرين** ')
+.addField('    **رابعا**' ,' **ممنوع الاعلانات** ')
+.addField('    **خامسا**' ,' **احترم الاخرين** ')
+.addField('    **سادسا**' ,' **لا تنشر في الشات او بل خاص** ')
+.addField('    **سابعا**' ,' **لا تنشر روابط!** ')
+.addField('    **ثامنا**' ,' **لا تسوي سبام ايموجي** ')
+.addField('    **تاسعا**' ,' **لا تطلب رتبه الاداره !** ')
+.setColor('#7d2dbe')
+  message.channel.sendEmbed(embed);
+    }
+});
 
 
    client.on('message', message => {
