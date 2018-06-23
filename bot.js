@@ -121,7 +121,7 @@ client.on('message', message=>{
 const moment = require('moment');
 
 client.on("guildMemberAdd", member => {
-let welcomer = member.guild.channels.find("name","دخول");
+let welcomer = member.guild.channels.find("name","welcome");
       if(!welcomer) return;
       if(welcomer) {
          moment.locale('ar-ly');
@@ -479,7 +479,7 @@ client.on("message", async message => {
   });
 
 client.on('guildMemberAdd', member => {
-    let channel = member.guild.channels.find('name', 'دخول');
+    let channel = member.guild.channels.find('name', 'welcome');
     let memberavatar = member.user.avatarURL
       if (!channel) return;
     let embed = new Discord.RichEmbed()
