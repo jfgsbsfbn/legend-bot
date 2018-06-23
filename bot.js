@@ -412,6 +412,19 @@ message.author.sendEmbed(embed)
 }
 });
 
+    client.on('message', msg => { 
+      if (msg.content.startsWith(`!sug`)) {
+         let args = msg.content.split(" ").slice(1);
+        if (!args[1]) return msg.reply(`يجب كتابه الاقتراح`)
+        if (msg.guild.channels.find('name', 'suggest-bot')) {
+          msg.guild.channels.find('name', 'suggest-bot').send(`
+        الاقتراح من : ${msg.member}
+        الاقتراح : **${args.join(" ").split(msg.mentions.members.first()).slice(' ')}**
+        `)
+        }
+      }
+      })
+
  client.on('message', message => {
     if (message.content.startsWith("رابط")) {
         message.channel.createInvite({
