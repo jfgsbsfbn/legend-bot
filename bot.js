@@ -65,7 +65,7 @@ let welcomer = member.guild.channels.find("name","chat");
 
 client.on('message', message => {
     if (!message.channel.guild) return;
-    if(!message.member.hasPermission('ADMINISTRATOR')) return message.reply("***  ليس معك صلاحيات  ***")
+    if(!message.member.hasPermission('ADMINISTRATOR')) return message.
     var prefix = "!";
        if (message.content ===   prefix + "add role") {
     message.channel.send("<@" + message.author.id + ">  ***  جاري اعطاء الرتبة للاعضاء كما طلبت  *** ")
