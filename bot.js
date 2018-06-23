@@ -260,7 +260,7 @@ client.on("channelCreate",  cc => {
                               ctx.fillStyle = "#FFFFFF";
                               ctx.textAlign = "center";
                                                          ctx.fillText(member.user.username, 200, 154);
-                                    ctx.fillText(`member number${member.guild.memberCount} `
+                                    ctx.fillText(`member number ${member.guild.memberCount} `
                               , 200, 180);
           
 
