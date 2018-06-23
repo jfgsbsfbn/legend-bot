@@ -120,24 +120,7 @@ client.on('message', message=>{
 
 const moment = require('moment');
 
-client.on("guildMemberAdd", member => {
-let welcomer = member.guild.channels.find("name","welcome");
-      if(!welcomer) return;
-      if(welcomer) {
-         moment.locale('ar-ly');
-         var h = member.user;
-        let norelden = new Discord.RichEmbed()
-        .setColor('RANDOM')
-        .setThumbnail(h.avatarURL)
-        .setAuthor(h.username,h.avatarURL)
-        .addField(': تاريخ دخولك الدسكورد',`${moment(member.user.createdAt).format('D/M/YYYY h:mm a')} **\n** \`${moment(member.user.createdAt).fromNow()}\``,true)            
-         .addField(': تاريخ دخولك السيرفر',`${moment(member.joinedAt).format('D/M/YYYY h:mm a ')} \n\`\`${moment(member.joinedAt).startOf(' ').fromNow()}\`\``, true)      
-         .setFooter(`${h.tag}`,"https://images-ext-2.discordapp.net/external/JpyzxW2wMRG2874gSTdNTpC_q9AHl8x8V4SMmtRtlVk/https/orcid.org/sites/default/files/files/ID_symbol_B-W_128x128.gif")
-     welcomer.send({embed:norelden});          
-               
- 
-      }
-      });
+
 
       client.on('message',function(message) {
   if (message.author.bot) return;
@@ -478,27 +461,41 @@ client.on("message", async message => {
   }
   });
 
-client.on('guildMemberAdd', member => {
-    let channel = member.guild.channels.find('name', 'welcome');
-    let memberavatar = member.user.avatarURL
-      if (!channel) return;
-    let embed = new Discord.RichEmbed()
-        .setColor('RANDOM')
-        .setThumbnail(memberavatar)
-        .addField(':running_shirt_with_sash: | name :  ',`${member}`)
-        .addField(':loudspeaker: | نورت السيرفر يا قلبي' , `Welcome to the server, ${member}`)
-        .addField(':id: | user :', "**[" + `${member.id}` + "]**" )
-                .addField('➡| انت العضو رقم',`${member.guild.memberCount}`)
-               
-                  .addField("Name:",`<@` + `${member.id}` + `>`, true)
-                     
-                                     .addField(' الـسيرفر', `${member.guild.name}`,true)
-                                       
-     .setFooter("**@Legend_YT#4187 **")
-        .setTimestamp()
-   
-      channel.sendEmbed(embed);
-    });
+  if (message.content.startsWith(prefix + "user")) {
+  if(!message.channel.guild) return message.reply(`هذا الأمر فقط ل السيرفرات :x:`);
+   message.guild.fetchInvites().then(invs => {
+      let member = client.guilds.get(message.guild.id).members.get(message.author.id);
+      let personalInvites = invs.filter(i => i.inviter.id === message.author.id);
+      let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
+      var moment = require('moment');
+      var args = message.content.split(" ").slice(1);
+let user = message.mentions.users.first();
+var men = message.mentions.users.first();
+ var heg;
+ if(men) {
+     heg = men
+ } else {
+     heg = message.author
+ }
+var mentionned = message.mentions.members.first();
+  var h;
+ if(mentionned) {
+     h = mentionned
+ } else {
+     h = message.member
+ }
+moment.locale('ar-TN');
+      var id = new  Discord.RichEmbed()
+    .setColor("RANDOM")
+    .setAuthor(message.author.username, message.author.avatarURL) 
+.addField(': دخولك لديسكورد قبل', `${moment(heg.createdTimestamp).format('YYYY/M/D HH:mm:ss')} **\n** \`${moment(heg.createdTimestamp).fromNow()}\`` ,true) 
+.addField(': انضمامك لسيرفر قبل', `${moment(h.joinedAt).format('YYYY/M/D HH:mm:ss')} \n \`${moment(h.joinedAt).fromNow()}\``, true)
+.addField(': عدد الدعوات', inviteCount,false)
+.setFooter("black-bot")  
+    message.channel.sendEmbed(id);
+})
+}       
+});
 
 client.on("message", message => {
  if (message.content === "!help") {
@@ -604,9 +601,9 @@ client.on('message', message => {
         let muterole = message.guild.roles.find("name", "muted")
         let men = message.mentions.users.first()
 
-        if(message.content.startsWith(prefix + "اسكت")) {
-            if(!men) return message.channel.send("**Do you want me to mute you 🤔 ?, please @mention someone. `Ex. #mute @xRokz bad boy`**");
-            if(!reason) return message.channel.send("**Do you want me to mute " + men.username + " with no reason ?, `Ex. #mute @xRokz bad boy` or just use `none` for no reason **`")
+        if(message.content.startsWith("اسكت")) {
+            if(!men) return message.channel.send("**يجب ذكر سبب اعطاه ميوت`**");
+            if(!reason) return message.channel.send("**يجب ذكر سبب اعطاه ميوت**`")
             if(!muterole) {
                 message.guild.createRole({name: "muted", color:"#505f74", permissions: [1115136]})
 
@@ -615,8 +612,8 @@ client.on('message', message => {
                 message.channel.send("**" + men.username + " has been muted! :zipper_mouth:**")
         }
 
-        if(message.content.startsWith(prefix + "تكلم")) {
-            if(!men) return message.channel.send("**please @mention someone. `Ex. #unmute <@!298732816995319809> bad boy`**");
+        if(message.content.startsWith("تكلم")) {
+            if(!men) return message.channel.send("**يجب ذكر سبب  اسكاته`**");
 
             if(!muterole) {
                 message.guild.createRole({name: "muted", color:"#505f74", permissions: [1115136]})
