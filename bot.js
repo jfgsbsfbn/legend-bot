@@ -165,6 +165,7 @@ client.on("channelCreate",  cc => {
        const table = require('table')
 const arraySort = require('array-sort');
 
+         var x5bz = "!"
 
          
 
