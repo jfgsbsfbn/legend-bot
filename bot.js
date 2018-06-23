@@ -45,7 +45,7 @@ client.on("ready", () => {
 
 
 client.on("guildMemberAdd", (member) => {
-    let channel = member.guild.channels.get("");// ايدي الروم
+    let channel = member.guild.channels.get("460065801643360257");// ايدي الروم
     if (!channel) {
         console.log("!channel fails");
         return;
@@ -56,19 +56,30 @@ client.on("guildMemberAdd", (member) => {
     console.log('made it till here!');
     var guild;
     while (!guild)
-        guild = client.guilds.get("")// ايدي السيرفر
+        guild = client.guilds.get("399187519150882816")// ايدي السيرفر
     guild.fetchInvites().then((data) => {
         data.forEach((Invite, key, map) => {
             var Inv = Invite.code;
             if (dat[Inv])
                 if (dat[Inv] < Invite.uses) {
- channel.send(`تم دعوته من قبل  ${Invite.inviter}`)            
+ channel.send(تم دعوته من قبل  ${Invite.inviter})
  }
             dat[Inv] = Invite.uses;
         })
     })
 })
 
+
+ client.on('message', message => {
+   if(message.content.startsWith(prefix + "invites")) {
+    message.guild.fetchInvites().then(invs => {
+      let user = message.mentions.users.first() || message.author
+      let personalInvites = invs.filter(i => i.inviter.id === user.id);
+      let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
+message.channel.send(`${user} has ${inviteCount} invites.`);
+});
+  }
+});
 
   const dot = new Discord.Client();
 client.on('message', message => {
