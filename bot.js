@@ -14,6 +14,32 @@ client.on('ready', function() {
     console.log(`i am ready ${client.user.username}`);
 });
 
+client.on('message', function(message) {
+                  if(!message.channel.guild) return;
+    if(message.content ===  '!setcolors 200') {
+        if(message.member.hasPermission('MANAGE_ROLES')) {
+            setInterval(function(){})
+            message.channel.send('جاري عمل الالوان يرجى الانتظار لمدة دقيقة |✅')
+        }else{
+            message.channel.send('ما معاك البرمشن المطلوب  |❌')
+            }
+    }
+});
+
+client.on('message', message=>{
+    if (message.content ===  '!setcolors 200'){
+              if(!message.channel.guild) return;
+            if (message.member.hasPermission('MANAGE_ROLES')){
+                setInterval(function(){})
+                  let count = 0;
+                  let ecount = 0;
+        for(let x = 1; x < 201; x++){
+            message.guild.createRole({name:x,
+            color: 'RANDOM'})
+            }
+            }
+    }
+});
 
 
 const moment = require('moment');
