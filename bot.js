@@ -63,25 +63,27 @@ let welcomer = member.guild.channels.find("name","chat");
       }
       });
 
-client.on('message', message => {
-    if (!message.channel.guild) return;
-    if(!message.member.hasPermission('ADMINISTRATOR')) return message.
-    var prefix = "!";
-       if (message.content ===   prefix + "add role") {
-    message.channel.send("<@" + message.author.id + ">  ***  جاري اعطاء الرتبة للاعضاء كما طلبت  *** ")
-    message.guild.members.forEach(m => {
-    m.addRole(message.guild.roles.find('name', 'اسم الرتبة'))
-    })
+var prefix = '!';
+      client.on('message',function(message) {
+  if (message.author.bot) return;
+
+
+                  if(!message.channel.guild) return;
+
+                    if (message.content === prefix + "members") {
+ const embed = new Discord.RichEmbed()
+
+    .setDescription(`**Members info ✨
+💚 online:   ${message.guild.members.filter(m=>m.presence.status == 'online').size}
+❤  dnd:       ${message.guild.members.filter(m=>m.presence.status == 'dnd').size}
+💛  idle:     ${message.guild.members.filter(m=>m.presence.status == 'idle').size}
+💠   membersCount:  ${message.guild.memberCount - message.guild.members.filter(m=>m.user.bot).size}
+💡 bots: ${message.guild.members.filter(m=>m.user.bot).size} **`)
+         message.channel.send({embed});
+
     }
-    
-       if (message.content ===   prefix + "remove role") {
-    message.channel.send("<@" + message.author.id + ">  ***  جاري اعطاء الرتبة للاعضاء كما طلبت  *** ")
-    message.guild.members.forEach(m => {
-    m.removeRole(message.guild.roles.find('name', 'اسم الرتبة'))
-    })
-    }
-    
-    });
+      }); 
+
 
 
 client.on('message', message => {
